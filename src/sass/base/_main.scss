@@ -14,7 +14,9 @@ a {
     color: var(--bs-yellow);
   }
 }
-
+main {
+  padding-bottom: 50px;
+}
 .main-page {
   .sub-desc {
     max-width: 800px;
