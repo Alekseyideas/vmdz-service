@@ -26,15 +26,15 @@ const config = {
   js: `/js`,
   images: `/images`,
   minImages: `/images`,
-  production: !!util.env.production
+  production: !!util.env.production,
 };
 
-const browserSync = done => {
+const browserSync = (done) => {
   browsersync.init({
     server: {
-      baseDir: dist
+      baseDir: dist,
     },
-    port: 3000,
+    port: 4001,
     online: true,
   });
   done();
@@ -53,9 +53,7 @@ const images = () => {
   return gulp
     .src(src + config.images + '/**/*')
     .pipe(newer((config.production ? build : dist) + config.images))
-    .pipe(
-      imagemin()
-    )
+    .pipe(imagemin())
     .pipe(gulp.dest((config.production ? build : dist) + config.images));
 };
 
@@ -65,12 +63,12 @@ const sassTask = () => {
     .pipe(config.production ? util.noop() : sourcemaps.init())
     .pipe(
       sass({
-        outputStyle: 'compressed'
+        outputStyle: 'compressed',
       }).on('error', sass.logError)
     )
     .pipe(
       autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {
-        cascade: true
+        cascade: true,
       })
     )
     .pipe(config.production ? util.noop() : sourcemaps.write())
@@ -84,7 +82,7 @@ const pugTask = () => {
     .src(`${src + config.pug}/**/*.pug`)
     .pipe(
       pug({
-        pretty: true
+        pretty: true,
       })
     )
     .pipe(gulp.dest(config.production ? build : dist))
@@ -98,7 +96,7 @@ const jsTask = () => {
       webpackStream({
         mode: config.production ? 'production' : 'development',
         output: {
-          filename: 'main.js'
+          filename: 'main.js',
         },
         module: {
           rules: [
@@ -108,12 +106,12 @@ const jsTask = () => {
               use: {
                 loader: 'babel-loader',
                 options: {
-                  presets: ['@babel/preset-env']
-                }
-              }
-            }
-          ]
-        }
+                  presets: ['@babel/preset-env'],
+                },
+              },
+            },
+          ],
+        },
       })
     )
     .pipe(gulp.dest((config.production ? build : dist) + config.js))
@@ -143,8 +141,5 @@ gulp.task('jsTask', jsTask);
 gulp.task('clean', clean);
 gulp.task('pugTask', pugTask);
 
-gulp.task(
-  'default',
-  gulp.series(clean, gulp.parallel(sassTask, pugTask, jsTask, images))
-);
+gulp.task('default', gulp.series(clean, gulp.parallel(sassTask, pugTask, jsTask, images)));
 gulp.task('watch', gulp.series(gulp.parallel(watchFiles, browserSync)));

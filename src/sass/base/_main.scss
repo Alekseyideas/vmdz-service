@@ -1,8 +1,36 @@
 html {
-	font-size: $startSize;
+  // font-size: $startSize;
 }
 
 body {
-	background: #f9f9f9;
-	font: $font;
+  background: #f9f9f9;
+  font-size: 1.4rem;
+  font: 1rem/1.5 var(--bs-font-sans-serif);
+}
+
+a {
+  color: var(--bs-orange);
+  &:hover {
+    color: var(--bs-yellow);
+  }
+}
+
+.main-page {
+  .sub-desc {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em;
+    font-weight: 300;
+    color: var(--bs-gray);
+  }
+
+  .btnsWrapper {
+    & > * {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 }

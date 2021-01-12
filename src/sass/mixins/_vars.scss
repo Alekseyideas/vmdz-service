@@ -9,18 +9,21 @@ $padding: 15px;
 // Colors
 //--------------------
 $colors: (
-	accent: #ff5500,
-	primary: #000,
-	blue: #2b73d5
+  accent: #ff5500,
+  primary: #000,
+  blue: #2b73d5,
 );
 
 @function color($colorSelect) {
-	@return map_get( $colors, $colorSelect)
+  @return map_get($colors, $colorSelect);
 }
 
+:root {
+  --bs-orange: rgb(247, 148, 29);
+}
 // Transition
 //--------------------
-$transition: .2s;
+$transition: 0.2s;
 
 // Corner radius
 //--------------------
@@ -31,7 +34,7 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
-$font: $fontSize 'Open Sans', sans-serif;
+$font: 1rem/1.5 var(--bs-font-sans-serif);
 
 $defPad: 20px 0;
 
