@@ -36,3 +36,27 @@ main {
     }
   }
 }
+
+@media (min-width: 1700px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1600px;
+  }
+}
+
+.btn-warning {
+  background: var(--bs-orange);
+  // color: white;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-link {
+  &:hover,
+  &:focus {
+    color: var(--bs-orange);
+  }
+}
