@@ -1,0 +1,62 @@
+extends ../layouts/base
+block content
+  main
+    section.plan-page
+      .container
+        h1.mt-5 План-конспект
+        .form-wrapper
+          form(action="")
+            .mb-3
+              label(for="theme").form-label Tема:
+              input(type="text").form-control#theme
+            .mb-3
+              label(for="vid").form-label Вид:
+              select(class="form-select")#vid
+                option(value="" selected) Виберiть
+                option(value="seminar") Семінар
+                option(value="seminar-practicum") Семінар-практикум
+                option(value="master-class") Майстер-клас
+            .mb-3
+              label(for="goal").form-label Мета:
+              textarea(class="form-control" id="goal" rows="3")
+            .mb-3
+              label(for="equipment").form-label Обладнання:
+              textarea(class="form-control" id="equipment" rows="3")
+            h3 Хід
+            h4 Вступна частина
+            p Ведучий вітає учасників заходу та повідомляє тему зустрічі. Відтак, щоб налаштувати педагогів на спільну діяльність, пропонує їм узяти участь у вправах/іграх.
+            ul.list-group.mb-3#equipment-exesises
+            button(class="btn btn-warning btnAddExesises" type="button" data-bs-toggle="modal" data-bs-target="#add-equipment-exesises") Додати вправу
+        
+            h3.mt-5 Основна частина
+            h4.mt-5 Теоретичний блок
+            p Ведучий пропонує учасникам
+            .mb-3
+                //- label(for="vid").form-label Вид:
+                select(class="form-select")#propose
+                  option(value="minilection") послухати мінілекцію
+                  option(value="perspective-experience") ознайомитися з перспективним досвідом
+                  option(value="video-view") переглянути відеозапис фрагменту заняття з дітьми
+                  option(value="another") інше
+                textarea(class="form-control mt-2 d-none" id="propose-another" rows="3")
+                p.mt-2 Відтак організовує бесіду за темою.
+            h4.mt-5 Практичний блок
+            p Ведучий узагальнює результати обговорення та пропонує учасникам узяти участь у вправах/іграх
+            ul.list-group.mb-3#practical-exesises
+            button(class="btn btn-warning btnAddExesises" type="button" data-bs-toggle="modal" data-bs-target="#add-practical-exesises") Додати вправу
+        
+            h4.mt-5 Заключна частина
+            p Ведучий підбиває підсумки заходу та пропонує виконати вправи на рефлексію.
+            ul.list-group.mb-3#reflection-exesises
+            button(class="btn btn-warning btnAddExesises" type="button" data-bs-toggle="modal" data-bs-target="#add-reflection-exesises") Додати вправу
+            br
+            div.mt-5
+             button(class="btn btn-primary" type="button") Зберегти конспект
+        
+
+
+  include ../components/equipment-exesises
+  include ../components/practical-exesises
+  include ../components/reflection-exesises
+
+

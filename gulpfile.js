@@ -21,6 +21,7 @@ const build = './build';
 const config = {
   css: `/css`,
   sass: `/sass`,
+  data: `/data`,
   pug: `/views/containers`,
   html: `${dist}`,
   js: `/js`,
@@ -56,6 +57,13 @@ const images = () => {
     .pipe(imagemin())
     .pipe(gulp.dest((config.production ? build : dist) + config.images));
 };
+const data = () => {
+  return gulp
+    .src(src + config.data + '/**/*')
+    .pipe(newer((config.production ? build : dist) + config.data))
+    .pipe(imagemin())
+    .pipe(gulp.dest((config.production ? build : dist) + config.data));
+};
 
 const sassTask = () => {
   return gulp
@@ -90,32 +98,34 @@ const pugTask = () => {
 };
 
 const jsTask = () => {
-  return gulp
-    .src(src + config.js + '/index.js')
-    .pipe(
-      webpackStream({
-        mode: config.production ? 'production' : 'development',
-        output: {
-          filename: 'main.js',
-        },
-        module: {
-          rules: [
-            {
-              test: /\.js$/,
-              exclude: /(node_modules)/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: ['@babel/preset-env'],
-                },
-              },
-            },
-          ],
-        },
-      })
-    )
-    .pipe(gulp.dest((config.production ? build : dist) + config.js))
-    .pipe(browsersync.stream());
+  return (
+    gulp
+      .src(src + config.js + '/index.js')
+      // .pipe(
+      //   webpackStream({
+      //     mode: config.production ? 'production' : 'development',
+      //     output: {
+      //       filename: 'main.js',
+      //     },
+      //     module: {
+      //       rules: [
+      //         {
+      //           test: /\.js$/,
+      //           exclude: /(node_modules)/,
+      //           use: {
+      //             loader: 'babel-loader',
+      //             options: {
+      //               presets: ['@babel/preset-env'],
+      //             },
+      //           },
+      //         },
+      //       ],
+      //     },
+      //   })
+      // )
+      .pipe(gulp.dest((config.production ? build : dist) + config.js))
+      .pipe(browsersync.stream())
+  );
 };
 
 const watchFiles = () => {
@@ -124,6 +134,7 @@ const watchFiles = () => {
   gulp.watch(`${src}/**/*.js`, jsTask);
 
   gulp.watch(src + config.images + '/**/*', images);
+  gulp.watch(src + config.data + '/**/*', data);
 };
 
 const revTask = () => {
@@ -140,6 +151,7 @@ gulp.task('sassTask', sassTask);
 gulp.task('jsTask', jsTask);
 gulp.task('clean', clean);
 gulp.task('pugTask', pugTask);
+gulp.task('data', data);
 
 gulp.task('default', gulp.series(clean, gulp.parallel(sassTask, pugTask, jsTask, images)));
 gulp.task('watch', gulp.series(gulp.parallel(watchFiles, browserSync)));
