@@ -12,6 +12,7 @@ $colors: (
   accent: #ff5500,
   primary: #000,
   blue: #2b73d5,
+  bs-orange: #f7941d,
 );
 
 @function color($colorSelect) {
@@ -19,7 +20,8 @@ $colors: (
 }
 
 :root {
-  --bs-orange: rgb(247, 148, 29);
+  --bs-orange: #f7941d;
+  --bs-primary: #004378;
 }
 // Transition
 //--------------------

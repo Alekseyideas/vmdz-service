@@ -1,5 +1,5 @@
 nav.navbar.navbar-expand-lg.navbar-light(style="background-color: #e3f2fd;")
-  .container-fluid
+  .container
 
     div
     button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
@@ -7,8 +7,10 @@ nav.navbar.navbar-expand-lg.navbar-light(style="background-color: #e3f2fd;")
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
-          a.nav-link.active(aria-current='page' href='#') Головна сторінка
+          a.nav-link.active(href='./' style="padding-left: 0;") Головна сторінка
         li.nav-item
-          a.nav-link(href='#') План-конспект
+          a.nav-link(href='./plan.html') План-конспект
         li.nav-item
           a.nav-link(href='#') Ігри та вправи
+        li.nav-item
+          a.nav-link(href='download-box.html') Скачати готову розробку
