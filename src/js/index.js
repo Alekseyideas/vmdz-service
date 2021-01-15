@@ -18,21 +18,6 @@ const inputValues = {
   propose: 'minilection',
 };
 
-const EXAMPLE_DATA = [
-  {
-    title: 'Лови каструлю',
-    body:
-      'Учасники утворюють широке коло. Ведучий пропонує їм спіймати уявний предмет. Відтак оголошує ім’я колеги й називає предмет, який кидає. Той, хто його ловить, має швидко «прилаштуватися» до предмета, адже кошеня потрібно ловити інакше, ніж змію. Потім той, хто спіймав уявний предмет, так само оголошує ім’я колеги й називає предмет, який йому кидатиме',
-    id: 1,
-  },
-  {
-    title: 'Вправа 2',
-    body:
-      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.',
-    id: 2,
-  },
-];
-
 const UI_ARROW =
   '<svg class="bi bi-chevron-right" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"/></svg>';
 
@@ -151,8 +136,9 @@ class Exercise {
 
   setDataInBlock(data = []) {
     // const block = document.getElementById(this.blockId);
+    console.log(this);
     if (!this.block) {
-      console.error(this.blockId + 'does not exist');
+      console.error(this.blockId + ' does not exist');
       return null;
     }
 
@@ -168,6 +154,7 @@ class Exercise {
       return;
     }
     newArr.forEach((itm, i) => {
+      if (!itm) return null;
       const isDisabledUp = i === 0 ? 'disabled' : null;
       const isDisabledDown = i + 1 === aSize ? 'disabled' : null;
       return (this.block.innerHTML += `
@@ -191,6 +178,10 @@ class Exercise {
     } else {
       globalExersises[this.modalId] = data;
     }
+
+    this.upPosListenerHandler();
+    this.deleteListenerHandler();
+    this.downPosListenerHandler();
   }
 
   submitModalListener() {
@@ -200,25 +191,23 @@ class Exercise {
     function updateGlobalExersises() {
       const data = this.selectedExersises;
       this.setDataInBlock(data);
-      this.deleteListenerHandler();
-      this.upPosListenerHandler();
     }
   }
 
   deleteListenerHandler() {
     const btns = this.block.querySelectorAll(`.${BTN_DELTE_EX}`);
     if (btns && btns[0]) {
-      btns.forEach((btn) => {
-        const itmId = btn.dataset.id;
-        btn.addEventListener('click', btnHandeler.bind(this, btn, itmId));
+      btns.forEach((btn, i) => {
+        btn.addEventListener('click', btnHandeler.bind(this, i));
       });
 
-      function btnHandeler(btn = null, itmId = '') {
-        const listItem = btn.closest('li');
-        listItem.remove();
-        globalExersises[this.modalId] = globalExersises[this.modalId].filter(
-          (itm) => String(itm.id) !== String(itmId)
-        );
+      function btnHandeler(position) {
+        const newArr = [...globalExersises[this.modalId]];
+        newArr.splice(position, 1);
+
+        globalExersises[this.modalId] = newArr;
+        console.log(newArr, 0);
+        this.setDataInBlock([]);
 
         if (globalExersises[this.modalId] && !globalExersises[this.modalId][0]) {
           const text = this.getEmptyText();
@@ -230,50 +219,42 @@ class Exercise {
 
   upPosListenerHandler() {
     const btns = this.block.querySelectorAll(`.${BTN_UP_EX}`);
+
     if (btns && btns[0]) {
       btns.forEach((btn, i) => {
         const itmId = btn.dataset.id;
-        btn.addEventListener('click', btnHandeler.bind(this, btn, itmId, i));
+
+        btn.addEventListener('click', btnHandeler.bind(this, i));
       });
-      let itmIdClicked = '';
-      let clickCount = 1;
-      function btnHandeler(btn = null, itmId = '', position = 0) {
-        console.log(position, 'position');
-        globalExersises[this.modalId] = [];
+
+      function btnHandeler(position = 0) {
+        const newArr = [...globalExersises[this.modalId]];
+        const itm = globalExersises[this.modalId][position];
+        newArr.splice(position, 1);
+        newArr.splice(position - 1, 0, itm);
+        globalExersises[this.modalId] = newArr;
         this.setDataInBlock([]);
+      }
+    }
+  }
 
-        const d = ['1', '2', '3', '4'];
+  downPosListenerHandler() {
+    const btns = this.block.querySelectorAll(`.${BTN_DOWN_EX}`);
 
-        d.splice(1, 1);
-        d.splice(2, 0, '2');
+    if (btns && btns[0]) {
+      btns.forEach((btn, i) => {
+        const itmId = btn.dataset.id;
 
-        console.log(d);
-        // if (itmIdClicked !== itmId) {
-        //   clickCount = 1;
-        //   itmIdClicked = itmId;
-        // }
-        // const listItem = btn.closest('li');
-        // const wrapperItems = btn.closest('ul');
-        // const listItems = wrapperItems.querySelectorAll('li');
+        btn.addEventListener('click', btnHandeler.bind(this, i));
+      });
 
-        // if (position - clickCount === 0) {
-        //   btn.disabled = true;
-        //   const btnNextItm = listItems[position - clickCount].querySelector(`.${BTN_UP_EX}`);
-        //   btnNextItm.disabled = false;
-        // }
-
-        // wrapperItems.insertBefore(listItem, listItems[position - clickCount]);
-
-        // console.log(clickCount);
-        // globalExersises[this.modalId] = globalExersises[this.modalId].filter(
-        //   (itm) => String(itm.id) !== String(itmId)
-        // );
-
-        // if (globalExersises[this.modalId] && !globalExersises[this.modalId][0]) {
-        //   const text = this.getEmptyText();
-        //   this.block.innerHTML = EMPTY_LIST_FN(text);
-        // }
-        clickCount++;
+      function btnHandeler(position = 0) {
+        const newArr = [...globalExersises[this.modalId]];
+        const itm = globalExersises[this.modalId][position];
+        newArr.splice(position, 1);
+        newArr.splice(position + 1, 0, itm);
+        globalExersises[this.modalId] = newArr;
+        this.setDataInBlock([]);
       }
     }
   }
@@ -321,15 +302,14 @@ if (btnAddEqExesises) {
   equipmentEx.init();
 }
 
+const practicalEx = new Exercise(
+  'practical-exesises',
+  prExesisesModalId,
+  'data/equipment-exesises.json'
+);
+
 if (btnAddPrExesises) {
-  const practicalEx = new Exercise(
-    'practical-exesises',
-    prExesisesModalId,
-    'data/equipment-exesises.json'
-  );
-
   btnAddPrExesises.addEventListener('click', () => addExesisesFn(practicalEx));
-
   practicalEx.init();
 }
 
@@ -377,3 +357,121 @@ if (selectProppose && textAreaProppose) {
     inputValues.propose = e.target.value;
   });
 }
+
+class CustomForm {
+  constructor(btn = '', formCardId = '', modalId = '', callBackAdd = () => null) {
+    this.btn = btn;
+    this.modalId = modalId;
+    this.infoWrapper = btn.closest('p');
+    this.formCardId = formCardId;
+    this.formCard = document.getElementById(formCardId);
+    this.isFormHidden = true;
+    this.title = '';
+    this.body = '';
+    this.callBackAdd = callBackAdd;
+  }
+
+  showForm() {
+    this.isFormHidden = false;
+    this.infoWrapper.classList.add('d-none');
+    this.formCard.classList.remove('d-none');
+  }
+
+  hideForm() {
+    this.isFormHidden = true;
+    this.infoWrapper.classList.remove('d-none');
+    this.formCard.classList.add('d-none');
+  }
+
+  addToGlobalExersises() {
+    if (!this.body || !this.title) return null;
+
+    const t = new Date().getTime();
+
+    const itm = {
+      id: t,
+      title: this.title,
+      body: this.body,
+    };
+    if (globalExersises[this.modalId] && globalExersises[this.modalId][0]) {
+      globalExersises[this.modalId] = [...globalExersises[this.modalId], itm];
+    } else {
+      globalExersises[this.modalId] = [itm];
+    }
+    this.callBackAdd();
+    this.hideForm();
+  }
+
+  inputsHandler() {
+    const titleInput = this.formCard.querySelector('input');
+    const bodyInput = this.formCard.querySelector('textarea');
+
+    titleInput.addEventListener('keypress', (e) => (this.title = e.target.value));
+    bodyInput.addEventListener('keypress', (e) => (this.body = e.target.value));
+  }
+
+  btnHandler() {
+    this.btn.addEventListener('click', this.showForm.bind(this));
+    const btnCancel = this.formCard.querySelector('.btnCancel');
+    const btnOk = this.formCard.querySelector('.btnOk');
+
+    if (btnCancel) {
+      btnCancel.addEventListener('click', this.hideForm.bind(this));
+    }
+
+    if (btnOk) {
+      btnOk.addEventListener('click', this.addToGlobalExersises.bind(this));
+    }
+  }
+
+  init() {
+    if (!this.formCard) {
+      console.error('No form card');
+      return;
+    }
+    this.btnHandler();
+    this.inputsHandler();
+  }
+}
+
+const practicalCustomFormBtn = document.getElementById('practical-exesises-custom-btn');
+
+if (practicalCustomFormBtn) {
+  const practicalCustomForm = new CustomForm(
+    practicalCustomFormBtn,
+    'practical-exesises-custom-card-form',
+    prExesisesModalId,
+    practicalEx.setDataInBlock.bind(practicalEx)
+  );
+  practicalCustomForm.init();
+}
+
+(function pageGames() {
+  const accordion = document.getElementById('accordionGames');
+
+  if (accordion) {
+    const links = accordion.querySelectorAll('a');
+    let cachCard = '';
+    links.forEach((a) => {
+      a.addEventListener('click', clickHandler);
+
+      function clickHandler(e) {
+        e.preventDefault();
+        if (this && this.dataset && this.dataset.id) {
+          const emptyCard = document.getElementById('noInfo');
+          const id = this.dataset.id;
+          const oldCard = document.getElementById(cachCard);
+          const activeCard = document.getElementById(id);
+
+          if (!emptyCard.classList.contains('d-none')) emptyCard.classList.add('d-none');
+          if (oldCard) oldCard.classList.add('d-none');
+          activeCard.classList.remove('d-none');
+          cachCard = id;
+        } else {
+          alert('Помилка, спробуйте пiзнiше');
+          console.error(this);
+        }
+      }
+    });
+  }
+})();
