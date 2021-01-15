@@ -61,7 +61,6 @@ const data = () => {
   return gulp
     .src(src + config.data + '/**/*')
     .pipe(newer((config.production ? build : dist) + config.data))
-    .pipe(imagemin())
     .pipe(gulp.dest((config.production ? build : dist) + config.data));
 };
 
@@ -153,5 +152,5 @@ gulp.task('clean', clean);
 gulp.task('pugTask', pugTask);
 gulp.task('data', data);
 
-gulp.task('default', gulp.series(clean, gulp.parallel(sassTask, pugTask, jsTask, images)));
+gulp.task('default', gulp.series(clean, gulp.parallel(sassTask, pugTask, jsTask, data, images)));
 gulp.task('watch', gulp.series(gulp.parallel(watchFiles, browserSync)));

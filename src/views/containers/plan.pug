@@ -43,8 +43,25 @@ block content
             h4.mt-5 Практичний блок
             p Ведучий узагальнює результати обговорення та пропонує учасникам узяти участь у вправах/іграх
             ul.list-group.mb-3#practical-exesises
+            p 
+              i За потреби впишіть власні вправи 
+              span.exesises-custom-btn#practical-exesises-custom-btn Вписати
+            .card.mb-3.d-none#practical-exesises-custom-card-form
+              .card-body
+                form#practical-exesises-card-form
+                  .mb-3
+                    label.form-label(for='practicalTitleEx') Назва
+                    input#practicalTitleEx.form-control(type='text')
+                  .mb-3
+                    label.form-label(for='practicalBodyEx') Опис
+                    textarea(class="form-control mt-2" id="practicalBodyEx" rows="3")
+                  div(class="d-flex")
+                    button.btn.btn-secondary.btnCancel.me-2(type='button') Закрити
+                    button.btn.btn-warning.btnOk(type='button') Додати
+
+
             button(class="btn btn-warning btnAddExesises" type="button" data-bs-toggle="modal" data-bs-target="#add-practical-exesises") Додати вправу
-        
+
             h4.mt-5 Заключна частина
             p Ведучий підбиває підсумки заходу та пропонує виконати вправи на рефлексію.
             ul.list-group.mb-3#reflection-exesises
