@@ -69,6 +69,9 @@ main {
 
 .btn-warning {
   background: var(--bs-orange);
+  &:focus {
+    background: var(--bs-orange);
+  }
   // color: white;
 }
 
@@ -106,8 +109,11 @@ label {
   .form-check {
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba($color: #6c757d, $alpha: 0.3);
+    // border-bottom: 1px solid rgba($color: #6c757d, $alpha: 0.3);
 
+    &:nth-child(2n + 1) {
+      padding-right: 20px;
+    }
     &:last-child {
       border-bottom: 0;
       padding-bottom: 0;
@@ -139,7 +145,12 @@ label {
 }
 
 .ex-list-info {
+  p {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
   span {
+    display: none;
     font-size: 14px;
     color: #6c757d;
   }
@@ -157,6 +168,10 @@ label {
 
 .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='orange'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:hover {
+  background-color: rgba($color: color(bs-orange), $alpha: 0.1);
 }
 
 .accordion-button:focus {
@@ -179,4 +194,67 @@ label {
   &:active {
     color: darken($color: color(bs-orange), $amount: 1);
   }
+}
+
+#accordionGames {
+  li {
+    background-color: rgba($color: color(bs-orange), $alpha: 0.03);
+    padding: 0 0 0;
+    a {
+      color: #000;
+
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      font-size: 15px;
+      // font-weight: 300;
+      &:hover {
+        background: rgba($color: color(bs-orange), $alpha: 0.02);
+      }
+      &:active {
+        background: rgba($color: color(bs-orange), $alpha: 0.1);
+      }
+
+      &.active {
+        color: color(bs-orange);
+      }
+    }
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+}
+
+.exesises {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    width: 100%;
+    border-bottom: 0;
+    @include minLg() {
+      width: 50%;
+    }
+  }
+}
+
+.modal-dialog {
+  max-width: 700px;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+.accordion-button.collapsed {
+  border-bottom-width: 0;
+
+  &:focus {
+    border-bottom-width: 0;
+  }
+}
+
+.accordion-button {
+  font-size: 1.1rem;
 }

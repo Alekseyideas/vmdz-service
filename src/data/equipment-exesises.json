@@ -1,37 +1,47 @@
 [
   {
-    "title": "Лови каструлю",
-    "body": "Учасники утворюють широке коло. Ведучий пропонує їм спіймати уявний предмет. Відтак оголошує ім’я колеги й називає предмет, який кидає. Той, хто його ловить, має швидко «прилаштуватися» до предмета, адже кошеня потрібно ловити інакше, ніж змію. Потім той, хто спіймав уявний предмет, так само оголошує ім’я колеги й називає предмет, який йому кидатиме",
+    "title": "Повіяв вітер",
+    "link": "./games.html#1",
+    "body": "",
     "id": 1
   },
   {
     "title": "Вправа 2",
-    "body": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.",
+    "link": "./games.html#2",
+    "body": "",
     "id": 2
   },
   {
     "title": "Вправа 3",
-    "body": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.",
+    "link": "./games.html#3",
+    "body": "",
     "id": 3
   },
   {
     "title": "Вправа 4",
-    "body": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.",
+    "link": "./games.html#4",
+    "body": "",
     "id": 4
   },
   {
     "title": "Вправа 5",
-    "body": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.",
+    "link": "./games.html#5",
+
+    "body": "",
     "id": 5
   },
   {
     "title": "Вправа 6",
-    "body": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.",
+    "link": "./games.html#6",
+
+    "body": "",
     "id": 6
   },
   {
     "title": "Вправа 7",
-    "body": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto minima suscipit ducimus modi ratione nam enim eum dignissimos inventore similique animi, reiciendis asperiores sint nobis? Sapiente fugiat perspiciatis perferendis nam.",
+    "link": "./games.html#7",
+
+    "body": "",
     "id": 7
   }
 ]

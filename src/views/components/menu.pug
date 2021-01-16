@@ -1,16 +1,15 @@
 nav.navbar.navbar-expand-lg.navbar-light(style="background-color: #e3f2fd;")
   .container
-
     div
     button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
-          a.nav-link.active(href='./' style="padding-left: 0;") Головна сторінка
+          a.nav-link(href='./' style="padding-left: 0;" class=(name === "index" ? "active" : undefined)) Головна сторінка
         li.nav-item
-          a.nav-link(href='./plan.html') План-конспект
+          a.nav-link(href='./plan.html' class=(name === "plan" ? "active" : undefined)) План-конспект
         li.nav-item
-          a.nav-link(href='./games.html') Ігри та вправи
+          a.nav-link(href='./games.html' class=(name === "games" ? "active" : undefined)) Ігри та вправи
         li.nav-item
-          a.nav-link(href='download-box.html') Скачати готову розробку
+          a.nav-link(href='download-box.html' class=(name === "download" ? "active" : undefined)) Скачати готову розробку
