@@ -1,5 +1,7 @@
 extends ../layouts/base
 block content
+  - var name = 'games'
+  include ../components/menu
   main
     section.games-page
       .container
@@ -12,66 +14,70 @@ block content
                   button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
                     | Щоб зробити початок цікавим
                 #collapseOne.accordion-collapse.collapse.show(aria-labelledby='headingOne' data-bs-parent='#accordionGames')
-                  .accordion-body
+                  .accordion-body.p-0
                     ul(class="list-group list-group-flush")
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp1") Повіяв вітер
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp2") Вправа 2
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp3") Вправа 3
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp4") Вправа 4
-                      li(class="list-unstyled") 
-                        a(href='#' data-id="vp5") Вправа 5
+                      li(class="list-group-item") 
+                        a(href='#1' data-id="1" class="active") Повіяв вітер
+                      li(class="list-group-item") 
+                        a(href='#2' data-id="2") Вправа 2
+                      li(class="list-group-item") 
+                        a(href='#3' data-id="3") Вправа 3
+                      li(class="list-group-item") 
+                        a(href='#4' data-id="4") Вправа 4
+                      li(class="list-group-item") 
+                        a(href='#5' data-id="5") Вправа 5
+                      li(class="list-group-item") 
+                        a(href='#6' data-id="6") Вправа 6
+                      li(class="list-group-item") 
+                        a(href='#7' data-id="7") Вправа 7
               .accordion-item
                 h2#headingTwo.accordion-header
                   button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo')
                     | Щоб організувати практичну діяльність
                 #collapseTwo.accordion-collapse.collapse(aria-labelledby='headingTwo' data-bs-parent='#accordionGames')
-                  .accordion-body
+                  .accordion-body.p-0
                     ul(class="list-group list-group-flush")
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp1") Повіяв вітер
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp2") Вправа 2
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp3") Вправа 3
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp4") Вправа 4
-                      li(class="list-unstyled") 
-                        a(href='#' data-id="vp5") Вправа 5
+                      li(class="list-group-item") 
+                        a(href='#8' data-id="8") Вправа 8
+                      li(class="list-group-item") 
+                        a(href='#9' data-id="9") Вправа 9
+                      li(class="list-group-item") 
+                        a(href='#10' data-id="10") Вправа 10
+                      li(class="list-group-item") 
+                        a(href='#11' data-id="11") Вправа 11
+                      li(class="list-group-item") 
+                        a(href='#12' data-id="12") Вправа 12
               .accordion-item
               .accordion-item
                 h2#headingThree.accordion-header
                   button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseThree' aria-expanded='false' aria-controls='collapseThree')
                     | Щоб підбити підсумки та провести рефлексію
                 #collapseThree.accordion-collapse.collapse(aria-labelledby='headingThree' data-bs-parent='#accordionGames')
-                  .accordion-body
+                  .accordion-body.p-0
                     ul(class="list-group list-group-flush")
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp1") Повіяв вітер
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp2") Вправа 2
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp3") Вправа 3
-                      li(class="list-unstyled mb-3") 
-                        a(href='#' data-id="vp4") Вправа 4
-                      li(class="list-unstyled") 
-                        a(href='#' data-id="vp5") Вправа 5
+                      li(class="list-group-item") 
+                        a(href='#13' data-id="13") Вправа 13
+                      li(class="list-group-item") 
+                        a(href='#14' data-id="14") Вправа 14
+                      li(class="list-group-item") 
+                        a(href='#15' data-id="15") Вправа 15
+                      li(class="list-group-item") 
+                        a(href='#16' data-id="16") Вправа 16
+                      li(class="list-group-item") 
+                        a(href='#17' data-id="17") Вправа 17
 
 
       
           .col-12.col-md-6.col-lg-8
-            .card#noInfo
-              .card-body
-                //- h5.card-title Виберiть вправу
-                h6.card-subtitle.text-muted.mb-5 Виберiть вправу
-                //- p.card-text
-                //-   | Учасники утворюють широке коло. Ведучий пропонує їм спіймати уявний предмет. Відтак оголошує ім’я колеги й називає предмет, який кидає. Той, хто його ловить, має швидко «прилаштуватися» до предмета, адже кошеня потрібно ловити інакше, ніж змію. Потім той, хто спіймав уявний предмет, так само оголошує ім’я колеги й називає предмет, який йому кидатиме
+            //- .card#noInfo
+            //-   .card-body
+            //-     //- h5.card-title Виберiть вправу
+            //-     h6.card-subtitle.text-muted.mb-5 Виберiть вправу
+            //-     //- p.card-text
+            //-     //-   | Учасники утворюють широке коло. Ведучий пропонує їм спіймати уявний предмет. Відтак оголошує ім’я колеги й називає предмет, який кидає. Той, хто його ловить, має швидко «прилаштуватися» до предмета, адже кошеня потрібно ловити інакше, ніж змію. Потім той, хто спіймав уявний предмет, так само оголошує ім’я колеги й називає предмет, який йому кидатиме
 
       
-            .card.d-none#vp1
+            .card#vp-1
               .card-body
                 h5.card-title Повіяв вітер
                 //- h6.card-subtitle.mb-2.text-muted Опис ....
@@ -87,23 +93,10 @@ block content
                     br
                     b Правило сусіда.
                     | Учасникам, яких «здув вітер», не можна займати місця сусідів праворуч і ліворуч.
-            .card.d-none#vp2
-              .card-body
-                h5.card-title Вправа 2
-                div.card-text
-                  p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error non architecto optio dignissimos! Sapiente, libero! Voluptas ratione, reprehenderit consequuntur excepturi alias voluptatem beatae assumenda, facere, dolore cum sunt incidunt voluptates?
-            .card.d-none#vp3
-              .card-body
-                h5.card-title Вправа 3
-                div.card-text
-                  p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error non architecto optio dignissimos! Sapiente, libero! Voluptas ratione, reprehenderit consequuntur excepturi alias voluptatem beatae assumenda, facere, dolore cum sunt incidunt voluptates?
-            .card.d-none#vp4
-              .card-body
-                h5.card-title Вправа 4
-                div.card-text
-                  p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error non architecto optio dignissimos! Sapiente, libero! Voluptas ratione, reprehenderit consequuntur excepturi alias voluptatem beatae assumenda, facere, dolore cum sunt incidunt voluptates?
-            .card.d-none#vp5
-              .card-body
-                h5.card-title Вправа 5
-                div.card-text
-                  p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error non architecto optio dignissimos! Sapiente, libero! Voluptas ratione, reprehenderit consequuntur excepturi alias voluptatem beatae assumenda, facere, dolore cum sunt incidunt voluptates?
+            - var n = 2;
+            while n < 20
+              .card.d-none(id="vp-" + n data-id=n)
+                .card-body
+                  h5.card-title= 'Вправа ' + n++
+                  div.card-text
+                    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error non architecto optio dignissimos! Sapiente, libero! Voluptas ratione, reprehenderit consequuntur excepturi alias voluptatem beatae assumenda, facere, dolore cum sunt incidunt voluptates?

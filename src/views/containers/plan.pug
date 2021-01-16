@@ -1,5 +1,7 @@
 extends ../layouts/base
 block content
+  - var name = 'plan'
+  include ../components/menu
   main
     section.plan-page
       .container
@@ -68,7 +70,7 @@ block content
             button(class="btn btn-warning btnAddExesises" type="button" data-bs-toggle="modal" data-bs-target="#add-reflection-exesises") Додати вправу
             br
             div.mt-5
-             button(class="btn btn-primary" type="button") Зберегти конспект
+             button(class="btn btn-primary" type="button")#saveConspect Зберегти конспект
         
 
 
